@@ -88,6 +88,52 @@ func main()  {
 	// 	}
 	// }
 	// fmt.Println(count)
+
+	// ----------------数组------------------
+	// 数组从声明时就确定，使用时可以修改数组成员，但是数组大小不可变化
+	// [n]*T表示指针数组，*[n]T表示数组指针 。
+
+	// var testArray [3]int              //[0 0 0]          //数组会初始化为int类型的零值
+	// var numArray = [3]int{1, 2}       //[1 2 0]          //使用指定的初始值完成初始化
+	// var cityArray = [3]string{"北京", "上海", "深圳"}  //[北京 上海 深圳]   //使用指定的初始值完成初始化
+	// // 自行推断数组的长度
+	// var numArray = [...]int{1, 2}     //[1 2]    
+	// var cityArray = [...]string{"北京", "上海", "深圳"} //[北京 上海 深圳]  
+	// // 使用指定索引值的方式来初始化数组
+	// a := [...]int{1: 1, 3: 5}       // [0 1 0 5]
+
+	// var cityArray = [...]string{"北京", "上海", "深圳"}
+	
+	// for i:= 0 ; i < len(cityArray);i++{
+	// 	fmt.Println(cityArray[i])
+	// }
+
+	// for k,v := range cityArray{
+	// 	fmt.Println(k,v)
+	// }
+	// ------数组求和-----
+	// var num = [...]int{1, 3, 5, 7, 8}
+	// var count = 0
+	// for i := 0 ; i < len(num) ;i++{
+	// 	count += num[i]
+	// }
+	// fmt.Println(count)
+	// ------twoSum---------
+	// 从数组[1, 3, 5, 7, 8]中找出和为8的两个元素的下标分别为(0,3)和(1,2)
+	// var num = [...]int{1, 3, 5, 7, 8}
+	// var count int = 8;
+	// for i := 0 ; i < len(num) ; i++{
+	// 	var temp = count - num[i]
+	// 	for j := i ; j < len(num) ;j++{
+	// 		if num[j] == temp{
+	// 			fmt.Println(i,j)
+	// 		}
+	// 	}
+	// }
+
+
+  
+
 }
 
 
