@@ -131,6 +131,11 @@ func main()  {
 	// 	}
 	// }
 
+	// ----------切片-----------
+	var num = [...]int{1,3,5,7,9}
+	var s = num[1:3]
+	fmt.Println(len(s),cap(s),s,cap(num))
+
 
   
 
