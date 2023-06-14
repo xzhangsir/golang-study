@@ -132,9 +132,64 @@ func main()  {
 	// }
 
 	// ----------切片-----------
-	var num = [...]int{1,3,5,7,9}
-	var s = num[1:3]
-	fmt.Println(len(s),cap(s),s,cap(num))
+	// var num = [...]int{1,3,5,7,9} //数组
+	// var s = num[1:3] //切片 左包含 右不包含
+	// // len 长度 cap 容量
+	// fmt.Println(len(s),cap(s),s,len(num)) //2 4 [3 5] 5
+
+	// 对切片再切片 右边界的上限是切片的容量
+	// a := [6]int{1,2,3,4,5,7}
+	// s := a[2:4]
+	// fmt.Println(s,len(s),cap(s))//[3 4] 2 4
+	// s2 := s[:4]  // 索引的上限是cap(s)而不是len(s)
+	// fmt.Println(s2,len(s2),cap(s2)) //[3 4 5 7] 4 4
+
+	// 使用make()函数构造切片  make([]T, size, cap)
+	// a := make([]int, 2, 6)
+	// fmt.Println(a,len(a),cap(a)) //[0 0] 2 6
+
+	// 对切片便利
+	// s := []int{1,3,5,7}
+	// for i := 0 ; i < len(s) ; i++{
+	// 	fmt.Println(s[i],i)
+	// }
+	// for index,val := range s{
+	// 	fmt.Println(index,val)
+	// }
+
+  // 切片中的方法
+	//  append
+  // var s []int
+	// fmt.Println(s,len(s),cap(s)) //[] 0 0
+	// s = append(s,66,77)
+	// fmt.Println(s,len(s),cap(s)) //[66 77] 2 2
+
+	// copy
+	// a := []int{1,3,5,7}
+	// c := make([]int, 5)
+	// copy(c,a)
+	// fmt.Println(a) //[1 3 5 7]
+	// fmt.Println(c) //[1 3 5 7 0]
+
+	// 从切片中删除元素
+	// a := []int{30, 31, 32, 33, 34, 35, 36, 37}
+	// a = append(a[:3],a[4:]...) //删除索引为3的元素
+	// fmt.Println(a) //[30 31 32 34 35 36 37]
+
+	// 数组排序
+	// var a = [...]int{3, 7, 8, 9, 1}
+	// for i := 0 ; i < len(a) ; i++{
+	// 	for j := i + 1 ; j < len(a) ; j++{
+	// 		if(a[i] > a[j]){
+	// 			a[i],a[j] = a[j],a[i]
+	// 		}
+	// 	}
+	// }
+	// fmt.Println(a) //[1 3 7 8 9]
+
+
+
+
 
 
   
