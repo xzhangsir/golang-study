@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	// "strings"
+	// "math/rand"
+  // "time"
+	// "sort"
 )
 
 // var 变量名 类型 = 表达式
@@ -186,6 +189,89 @@ func main()  {
 	// 	}
 	// }
 	// fmt.Println(a) //[1 3 7 8 9]
+
+
+
+	// ---------map-----------
+	// map类型的变量默认初始值为nil  cap容量不是必须的
+	// make(map[keyType]ValueType,[cap])
+	// 	scoreMap := make(map[string]int, 2)
+	// 	scoreMap["张三"] = 90
+	// 	scoreMap["李四"] = 90
+	// 	scoreMap["王五"] = 90
+	// 	fmt.Println(scoreMap) //map[张三:90 李四:90 王五:90]
+	// 	fmt.Printf("type of a:%T\n", scoreMap) //type of a:map[string]int
+
+	// // map也支持在声明的时候填充元素，例如：
+		// userInfo := map[string]string{
+		// 	"username": "zhangsan",
+		// 	"pwd": "123",
+		// }
+		// 判断map中建是否存在
+		// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值
+		// fmt.Println(userInfo) 
+		// value,ok := userInfo["username"]
+		// fmt.Println(value,ok)  //zhangsan true
+		// value,ok := userInfo["age"]
+		// fmt.Println(value,ok)  //  false
+
+		// for key,value := range userInfo{
+		// 	fmt.Println(key,value)
+		// }
+		// 只遍历key
+		// for key := range userInfo{
+		// 	fmt.Println(key)
+		// }
+		// // 只遍历value
+		// for _,value := range userInfo{
+		// 	fmt.Println(value)
+		// }
+
+		// 删除一组键值对  delete(map, key)
+		// scoreMap := make(map[string]int)
+		// scoreMap["张三"] = 10
+		// scoreMap["小明"] = 20
+		// scoreMap["李华"] = 30
+		// delete(scoreMap,"小明")
+		// fmt.Println(scoreMap)
+
+    // rand.Seed(time.Now().UnixNano()) //初始化随机数种子
+		// var scoreMap = make(map[string]int,10)
+		// for i := 0 ; i < 10 ; i++{
+		//	// 生成0~99的随机整数
+		// 	scoreMap[fmt.Sprintf("str%v" , i)] = rand.Intn(100)
+		// }
+		// // fmt.Println(scoreMap)
+		// var keys = make([]string,0)
+		// for key := range scoreMap{
+		// 	keys = append(keys,key)
+		// }
+		// // fmt.Println(keys)
+		// // 对切片排序
+		// sort.Strings(keys)
+		// // fmt.Println(keys)
+		// for _,key := range keys{
+		// 	fmt.Println(key,scoreMap[key])
+		// }
+
+	// 元素为map类型的切片
+	// var mapSlice = make([]map[string]string,3)
+	
+	
+
+		
+
+
+		
+
+
+
+		
+
+
+
+
+	
 
 
 
