@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// "strings"
+	"strings"
 	// "math/rand"
   // "time"
 	// "sort"
@@ -256,6 +256,37 @@ func main()  {
 
 	// 元素为map类型的切片
 	// var mapSlice = make([]map[string]string,3)
+	// mapSlice[0] = make(map[string]string,10)
+	// mapSlice[0]["username"] = "zhangsan"
+	// mapSlice[0]["pwd"] = "123"
+	// fmt.Println("mapSlice",mapSlice) //[map[pwd:123 username:zhangsan] map[] map[]]
+
+	// 值为切片的map
+	// var sliceMap = make(map[string][]string,3)
+	// value,ok := sliceMap["info"]
+	// if !ok{
+	// 	value = make([]string,0,2)
+	// }
+	// value = append(value,"背景","上海")
+	// sliceMap["info"] = value
+	// fmt.Println(sliceMap) //map[info:[背景 上海]]
+
+	// 统计字符串中没个字母出现的次数
+	// var str = "how do you do"
+	// var wordMap = make(map[string]int)
+
+	// words := strings.Split(str,"")
+	// // for i := 0 ; i < len(words) ; i++{
+	// // 	key := words[i]
+	// // 	wordMap[key] += 1
+	// // }
+	// for _,key := range(words){
+	// 	wordMap[key] += 1
+	// }
+	// fmt.Println(wordMap)
+
+
+
 	
 	
 
