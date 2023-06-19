@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	// "strings"
 	// "math/rand"
   // "time"
 	// "sort"
@@ -284,6 +284,110 @@ func main()  {
 	// 	wordMap[key] += 1
 	// }
 	// fmt.Println(wordMap)
+
+
+	// 结构体
+	type person struct{
+		name,sex string
+		age int
+	}
+	// var p1 person
+	// p1.name = "zx"
+	// p1.sex = "nan"
+	// p1.age = 12
+	// fmt.Println(p1,p1.name) //{zx nan 12} zx
+
+	// 匿名结构体
+	// var user struct{name string; age int}
+	// user.name = "lisi"
+	// user.age = 12
+	// fmt.Println(user,user.name) //{lisi 12} lisi
+
+	// 创建指针类型结构体
+	// var p2 = new(person)
+	// p2.name = "小王子"
+	// p2.age = 28
+	// p2.sex = "上海"
+	// fmt.Println(p2,p2.name) //&{小王子 上海 28} 小王子
+
+	// 取结构体的地址实例化
+	// 使用&对结构体进行取地址操作
+	// 相当于对该结构体类型进行了一次new实例化操作
+	// var p3 = &person{}
+	// p3.name = "小王子"
+	// p3.age = 28
+	// p3.sex = "上海"
+	// fmt.Println(p3,p3.name) //&{小王子 上海 28} 小王子
+
+	// 结构体实例化
+	// 使用键值对初始化
+	// p5 := person{
+	// 	name: "小王子",
+	// 	sex: "北京",
+	// 	age:  18,
+	// }
+	// fmt.Println(p5,p5.name) //{小王子 北京 18} 小王子
+
+	// 对结构体指针进行键值对初始化
+	// p6 := &person{
+	// 	name: "小王子",
+	// 	sex: "北京",
+	// 	age:  18,
+	// }
+	// fmt.Println(p6,p6.name)  //&{小王子 北京 18} 小王子
+	// // 部分字段初始化
+	// p7 := &person{
+	// 	name: "小王子",
+	// }
+	// fmt.Println(p7,p7.name) //&{小王子  0} 小王子
+
+	// 结构体占用一块连续的内存。
+	// type test struct {
+	// 	a int8
+	// 	b int8
+	// 	c int8
+	// 	d int8
+	// }
+	// n := test{
+	// 	1, 2, 3, 4,
+	// }
+	// fmt.Printf("n.a %p\n", &n.a) //n.a 0xc000016088
+	// fmt.Printf("n.b %p\n", &n.b) //n.b 0xc000016089
+	// fmt.Printf("n.c %p\n", &n.c) //n.c 0xc00001608a
+	// fmt.Printf("n.d %p\n", &n.d) //n.d 0xc00001608b
+
+
+	type student struct{
+		name string
+		age int
+	}
+
+	m := make(map[string]*student)
+	stus := []student{
+		{name: "小王子", age: 18},
+		{name: "娜扎", age: 23},
+		{name: "大王八", age: 9000},
+	}
+
+	for _,stu := range stus{
+		
+		m[stu.name] = &stu
+		/**
+		由于我们在分配之前创建了一个临时变量 stu，因此所有指针都指向了同一个变量：最后一次迭代的学生*/
+		// a := stu
+		// m[stu.name] = &a
+	}
+	for key,val := range m{
+		fmt.Println(key,val)
+	}
+
+
+
+
+
+
+
+
 
 
 
