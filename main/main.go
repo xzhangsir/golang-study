@@ -357,29 +357,43 @@ func main()  {
 	// fmt.Printf("n.d %p\n", &n.d) //n.d 0xc00001608b
 
 
-	type student struct{
-		name string
-		age int
-	}
+	// type student struct{
+	// 	name string
+	// 	age int
+	// }
 
-	m := make(map[string]*student)
-	stus := []student{
-		{name: "小王子", age: 18},
-		{name: "娜扎", age: 23},
-		{name: "大王八", age: 9000},
-	}
+	// m := make(map[string]*student)
+	// stus := []student{
+	// 	{name: "小王子", age: 18},
+	// 	{name: "娜扎", age: 23},
+	// 	{name: "大王八", age: 9000},
+	// }
 
-	for _,stu := range stus{
+	// for _,stu := range stus{
 		
-		m[stu.name] = &stu
-		/**
-		由于我们在分配之前创建了一个临时变量 stu，因此所有指针都指向了同一个变量：最后一次迭代的学生*/
-		// a := stu
-		// m[stu.name] = &a
+	// 	m[stu.name] = &stu
+	// 	/**
+	// 	由于我们在分配之前创建了一个临时变量 stu，因此所有指针都指向了同一个变量：最后一次迭代的学生*/
+	// 	// a := stu
+	// 	// m[stu.name] = &a
+	// }
+	// for key,val := range m{
+	// 	fmt.Println(key,val)
+	// }
+
+
+	// 构造函数
+	func newPerson(name, city string, age int8) *person {
+		return &person{
+			name: name,
+			city: city,
+			age:  age,
+		}
 	}
-	for key,val := range m{
-		fmt.Println(key,val)
-	}
+	p9 := newPerson("张三", "沙河", 90)
+	fmt.Printf("%#v\n", p9)
+
+
 
 
 
