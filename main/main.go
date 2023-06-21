@@ -287,10 +287,10 @@ func main()  {
 
 
 	// 结构体
-	type person struct{
-		name,sex string
-		age int
-	}
+	// type person struct{
+	// 	name,sex string
+	// 	age int
+	// }
 	// var p1 person
 	// p1.name = "zx"
 	// p1.sex = "nan"
@@ -380,54 +380,6 @@ func main()  {
 	// for key,val := range m{
 	// 	fmt.Println(key,val)
 	// }
-
-
-	// 构造函数
-	func newPerson(name, city string, age int8) *person {
-		return &person{
-			name: name,
-			city: city,
-			age:  age,
-		}
-	}
-	p9 := newPerson("张三", "沙河", 90)
-	fmt.Printf("%#v\n", p9)
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-		
-
-
-		
-
-
-
-		
-
-
-
-
-	
-
-
-
-
-
-
-  
 
 }
 
