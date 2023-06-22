@@ -19,6 +19,10 @@ func newPerson(name, city string, age int8) *person {
 func (p person) eat(){
 	fmt.Printf("%v在吃东西",p.name)
 }
+// 指针类型的接受者
+func (p *person) SetAge(newAge int8){
+	p.age = newAge
+}
 
 func main() {		
 	// p1 := newPerson("张三", "沙河", 90)
@@ -32,7 +36,10 @@ func main() {
 	// 		函数体
 	// }
 	p1 := newPerson("张三", "沙河", 90)
-	p1.eat()
+	p1.eat() //张三在吃东西
+	fmt.Println(p1.age) //90
+	p1.SetAge(30)
+	fmt.Println(p1.age) //30
 
 
 
