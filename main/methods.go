@@ -23,7 +23,10 @@ func (p person) eat(){
 func (p *person) SetAge(newAge int8){
 	p.age = newAge
 }
-
+// 值类型的接受者
+func (p person) SetAge2(newAge int8){
+	p.age = newAge
+}
 func main() {		
 	// p1 := newPerson("张三", "沙河", 90)
 	// fmt.Printf("%#v\n", p1) //&main.person{name:"张三", city:"沙河", age:90}
@@ -37,9 +40,16 @@ func main() {
 	// }
 	p1 := newPerson("张三", "沙河", 90)
 	p1.eat() //张三在吃东西
-	fmt.Println(p1.age) //90
-	p1.SetAge(30)
-	fmt.Println(p1.age) //30
+  fmt.Println(p1.age) //90
+
+	//  指针类型的接受者
+	// p1.SetAge(30)
+	// fmt.Println(p1.age) //30
+
+	// 值类型的接受者 无法修改接收者变量本身
+  p1.SetAge2(30) // (*p1).SetAge2(30)
+	fmt.Println(p1.age) // 90
+
 
 
 
