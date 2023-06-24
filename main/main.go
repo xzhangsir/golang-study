@@ -1,11 +1,12 @@
 package main
 
 import (
-	"fmt"
+	// "fmt"
 	// "strings"
 	// "math/rand"
   // "time"
 	// "sort"
+	"hello/main/testpackage"
 )
 
 // var 变量名 类型 = 表达式
@@ -380,6 +381,9 @@ func main()  {
 	// for key,val := range m{
 	// 	fmt.Println(key,val)
 	// }
+
+
+	testpackage.Test()
 
 }
 
