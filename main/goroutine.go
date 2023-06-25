@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// "sync"
+	"sync"
 )
 
 //----启动单个goroutine----
@@ -120,30 +120,78 @@ import (
 // Producer 返回一个接收通道
 // 并持续将符合条件的数据发送至返回的通道中
 // 数据发送完成后会将返回的通道关闭
-func Producer() <-chan int{
-	ch := make(chan int,2)
-	go func(){
-		for i := 0 ; i < 10 ; i++{
-			if i%2 == 1{
-				ch <- i
-			}
-		}
-		close(ch)
-	}()
-	return ch
-}
-// Consumer 从通道中接收数据进行计算 参数为接受通道
-func Consumber(ch <-chan int) int{
-	sum := 0
-	for v := range ch{
-		sum += v
-	}
-	return sum
-}
+// func Producer() <-chan int{
+// 	ch := make(chan int,2)
+// 	go func(){
+// 		for i := 0 ; i < 10 ; i++{
+// 			if i%2 == 1{
+// 				ch <- i
+// 			}
+// 		}
+// 		close(ch)
+// 	}()
+// 	return ch
+// }
+// // Consumer 从通道中接收数据进行计算 参数为接受通道
+// func Consumber(ch <-chan int) int{
+// 	sum := 0
+// 	for v := range ch{
+// 		sum += v
+// 	}
+// 	return sum
+// }
 
-func main(){
-	ch := Producer()
-	res := Consumber(ch)
-	fmt.Println(res) //25
-}
+// func main(){
+// 	ch := Producer()
+// 	res := Consumber(ch)
+// 	fmt.Println(res) //25
+// }
+
+
+// select多路复用
+// func main(){
+// 	ch := make(chan int,1)
+// 	for i := 1 ; i <= 10 ; i++{
+// 		select{
+// 		case x := <- ch:
+// 			fmt.Println(x) // 1 3 5 7 9
+// 		case ch <- i:
+// 		}
+// 	}
+// // 第一次循环时 i = 1，select 语句中包含两个 case 分支，此时由于通道中没有值可以接收，所以x := <-ch 这个 case 分支不满足，而ch <- i这个分支可以执行，会把1发送到通道中，结束本次 for 循环；
+// // 第二次 for 循环时，i = 2，由于通道缓冲区已满，所以ch <- i这个分支不满足，而x := <-ch这个分支可以执行，从通道接收值1并赋值给变量 x ，所以会在终端打印出 1；
+// // 后续的 for 循环以此类推会依次打印出3、5、7、9。
+// }
+
+
+// 互斥锁
+// 如果不加锁
+// 开启了两个 goroutine 分别执行 add 函数，
+// 这两个 goroutine 在访问和修改全局的x变量时就会存在数据竞争，
+// 某个 goroutine 中对全局变量x的修改可能会覆盖掉另一个 goroutine 中的操作，
+// 所以导致最后的结果与预期不符。
+
+// var (
+// 	x int
+// 	wg sync.WaitGroup //等待组
+// 	m sync.Mutex //互斥锁
+// )
+// func add(){
+// 	for i:=0 ; i < 5000 ; i++{
+// 		m.Lock()  //修改X前加锁
+// 		x = x + 1
+// 		m.Unlock() //修改X后解锁
+// 	}
+// 	wg.Done()
+// }
+// func main(){
+// 	wg.Add(2)
+// 	go add()
+// 	go add()
+// 	wg.Wait()
+// 	fmt.Println(x) //10000
+// }
+
+
+
 
