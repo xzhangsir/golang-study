@@ -6,7 +6,8 @@ import (
 	// "math/rand"
   // "time"
 	// "sort"
-	"hello/main/testpackage"
+	"hello/main/testPackage"
+	// 包名/路径/路径
 )
 
 // var 变量名 类型 = 表达式

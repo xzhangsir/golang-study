@@ -15,3 +15,9 @@ require github.com/q1mi/hello latest
 
 然后执行  go mod download
 ```
+
+<!-- 清除所有本地已缓存的依赖包数据 -->
+
+```
+ go clean -modcache
+```
