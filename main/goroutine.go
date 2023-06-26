@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"sync"
 )
 
@@ -193,5 +194,36 @@ import (
 // }
 
 
+// sync.Map 
+// 不能在多个 goroutine 中并发对内置的 map 进行读写操作，
+// 否则会存在数据竞争问题。
+
+// var m = make(map[string]int)
+var m = sync.Map{}
+
+// func get(key string) int{
+// 	return m[key]
+// }
+// func set(key string,v int){
+// 	m[key] = v
+// }
+
+func main(){
+	wg := sync.WaitGroup{}
+	for i:= 0 ; i < 10 ; i++{
+		wg.Add(1)
+		go func(n int){
+			key := strconv.Itoa(n)
+			// 整数转字符串
+			// set(key, n)
+			// fmt.Println(key,get(key))
+			m.Store(key,i) // 存储key-value
+			value, _ := m.Load(key) // 根据key取值
+			fmt.Printf("k=:%v,v:=%v\n", key, value)
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+}
 
 
