@@ -106,8 +106,8 @@ type user struct{
 // 结构体与json序列化
 type student struct{
 	ID int      `json:"id"` //通过指定tag实现json序列化该字段时的key
-	Gender string
-	Name string
+	Gender string `json:"gender,omitempty"` //omitempty 忽略空值
+	Name string `json:"-"` // 指定json序列化/反序列化时忽略此字段
 }
 type class struct{
 	Title string `json:"title"`
