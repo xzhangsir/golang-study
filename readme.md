@@ -25,3 +25,11 @@ require github.com/q1mi/hello latest
 ```
 go work init ./xx ./xx
 ```
+
+<!-- chat即时聊天系统  -->
+
+```
+ go run main.go server.go user.go
+
+ go run client.go
+```
