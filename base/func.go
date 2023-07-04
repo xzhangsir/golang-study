@@ -1,59 +1,61 @@
 package main
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
-func intSum(x,y int) int{
+func intSum(x, y int) int {
 	return x + y
 }
-func intSumSome(x ...int)(sum int){
-	for _,v := range x{
+func intSumSome(x ...int) (sum int) {
+	for _, v := range x {
 		sum += v
 	}
-	return 
+	return
 }
-func calc(x,y int)(int,int){
+func calc(x, y int) (int, int) {
 	sum := x + y
-	sub := x - y 
-	return sum,sub
+	sub := x - y
+	return sum, sub
 }
+
 // func calc(x,y int)(sum,sub int){
 // 	sum = x + y
-// 	sub = x - y 
+// 	sub = x - y
 // 	return
 // }
 
 // 定义函数类型
 // type calculation func(int, int) int
 
-// 高阶函数 
+// 高阶函数
 // 函数作为参数
-func add(x,y int)int{
+func add(x, y int) int {
 	return x + y
 }
-func calc2(x,y int,opt func(int,int) int) int{
-	return opt(x,y)
+func calc2(x, y int, opt func(int, int) int) int {
+	return opt(x, y)
 }
+
 // 函数作为返回值
-func do(s string)(func (int,int) int,error){
+func do(s string) (func(int, int) int, error) {
 	switch s {
-		case "+":
-			return add,nil
-			
-		case "-":
-			return func (x,y int) int{
-				return x-y
-			},nil
-		default:
-			err:= errors.New("无法识别")
-			// err := "无法识别"
-			return nil,err
+	case "+":
+		return add, nil
+
+	case "-":
+		return func(x, y int) int {
+			return x - y
+		}, nil
+	default:
+		err := errors.New("无法识别")
+		// err := "无法识别"
+		return nil, err
 	}
 }
 
-func main()  {
+func Function() {
 	// sum := intSum(1,2)
 	// sum := intSumSome(2,3,4)
 	// fmt.Println(sum)
@@ -75,6 +77,7 @@ func main()  {
 	funcB()
 	funcC()
 }
+
 // defer语句 可以理解为压栈
 // func f1() int {
 // 	x := 5
@@ -105,12 +108,12 @@ func main()  {
 
 // 异常处理
 // panic/recover
-func funcA(){
+func funcA() {
 	fmt.Println("func A")
 }
 
-func funcB(){
-	defer func(){
+func funcB() {
+	defer func() {
 		err := recover()
 		if err != nil {
 			fmt.Println("revocer in B")
@@ -118,8 +121,6 @@ func funcB(){
 	}()
 	panic("panic in B")
 }
-func funcC(){
+func funcC() {
 	fmt.Println("func C")
 }
-
-

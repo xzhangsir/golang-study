@@ -1,14 +1,14 @@
 package main
 
-import (
-	// "fmt"
-	// "strings"
-	// "math/rand"
-  // "time"
-	// "sort"
-	"hello/main/testPackage"
-	// 包名/路径/路径
-)
+import "base/testpackage"
+
+// "fmt"
+// "strings"
+// "math/rand"
+// "time"
+// "sort"
+// testpackage "base/testPackage"
+// 包名/路径
 
 // var 变量名 类型 = 表达式
 // var name string = "zx"
@@ -39,8 +39,7 @@ import (
 // 		e, f                      //3,4
 // 	)
 
-
-func main()  {
+func main() {
 	// 在函数内部 短变量声明
 	// num := 12
 	// 匿名变量用一个下划线 _ 表示
@@ -62,7 +61,7 @@ func main()  {
 	// fmt.Println(strings.LastIndex(str,"9")) // -1
 	// 将字符串切片按照指定字符连接
 	// sce := []string{"2023","02"}
-	// fmt.Println(strings.Join(sce,"-")) //2023-02 
+	// fmt.Println(strings.Join(sce,"-")) //2023-02
 
 	// s1 := "hello语言"
 	// for i := 0 ; i < len(s1) ;i++{ //byte
@@ -71,14 +70,14 @@ func main()  {
 	// for _,r := range s1{  //rune
 	// 	fmt.Println(r)
 	// }
-  // 修改字符串
+	// 修改字符串
 	// 要修改字符串，需要先将其转换成[]rune或[]byte，完成后再转换为string。
 	// 无论哪种转换，都会重新分配内存，并复制字节数组。
 	// s1 := "big"
 	// byteS1 := []byte(s1)
 	// byteS1[0] = 'p'
 	// fmt.Println(string(byteS1))
-	
+
 	// s2 := "大西瓜"
 	// runeS2 := []rune(s2)
 	// runeS2[0] = '红'
@@ -102,13 +101,13 @@ func main()  {
 	// var numArray = [3]int{1, 2}       //[1 2 0]          //使用指定的初始值完成初始化
 	// var cityArray = [3]string{"北京", "上海", "深圳"}  //[北京 上海 深圳]   //使用指定的初始值完成初始化
 	// // 自行推断数组的长度
-	// var numArray = [...]int{1, 2}     //[1 2]    
-	// var cityArray = [...]string{"北京", "上海", "深圳"} //[北京 上海 深圳]  
+	// var numArray = [...]int{1, 2}     //[1 2]
+	// var cityArray = [...]string{"北京", "上海", "深圳"} //[北京 上海 深圳]
 	// // 使用指定索引值的方式来初始化数组
 	// a := [...]int{1: 1, 3: 5}       // [0 1 0 5]
 
 	// var cityArray = [...]string{"北京", "上海", "深圳"}
-	
+
 	// for i:= 0 ; i < len(cityArray);i++{
 	// 	fmt.Println(cityArray[i])
 	// }
@@ -162,9 +161,9 @@ func main()  {
 	// 	fmt.Println(index,val)
 	// }
 
-  // 切片中的方法
+	// 切片中的方法
 	//  append
-  // var s []int
+	// var s []int
 	// fmt.Println(s,len(s),cap(s)) //[] 0 0
 	// s = append(s,66,77)
 	// fmt.Println(s,len(s),cap(s)) //[66 77] 2 2
@@ -192,8 +191,6 @@ func main()  {
 	// }
 	// fmt.Println(a) //[1 3 7 8 9]
 
-
-
 	// ---------map-----------
 	// map类型的变量默认初始值为nil  cap容量不是必须的
 	// make(map[keyType]ValueType,[cap])
@@ -205,56 +202,56 @@ func main()  {
 	// 	fmt.Printf("type of a:%T\n", scoreMap) //type of a:map[string]int
 
 	// // map也支持在声明的时候填充元素，例如：
-		// userInfo := map[string]string{
-		// 	"username": "zhangsan",
-		// 	"pwd": "123",
-		// }
-		// 判断map中建是否存在
-		// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值
-		// fmt.Println(userInfo) 
-		// value,ok := userInfo["username"]
-		// fmt.Println(value,ok)  //zhangsan true
-		// value,ok := userInfo["age"]
-		// fmt.Println(value,ok)  //  false
+	// userInfo := map[string]string{
+	// 	"username": "zhangsan",
+	// 	"pwd": "123",
+	// }
+	// 判断map中建是否存在
+	// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值
+	// fmt.Println(userInfo)
+	// value,ok := userInfo["username"]
+	// fmt.Println(value,ok)  //zhangsan true
+	// value,ok := userInfo["age"]
+	// fmt.Println(value,ok)  //  false
 
-		// for key,value := range userInfo{
-		// 	fmt.Println(key,value)
-		// }
-		// 只遍历key
-		// for key := range userInfo{
-		// 	fmt.Println(key)
-		// }
-		// // 只遍历value
-		// for _,value := range userInfo{
-		// 	fmt.Println(value)
-		// }
+	// for key,value := range userInfo{
+	// 	fmt.Println(key,value)
+	// }
+	// 只遍历key
+	// for key := range userInfo{
+	// 	fmt.Println(key)
+	// }
+	// // 只遍历value
+	// for _,value := range userInfo{
+	// 	fmt.Println(value)
+	// }
 
-		// 删除一组键值对  delete(map, key)
-		// scoreMap := make(map[string]int)
-		// scoreMap["张三"] = 10
-		// scoreMap["小明"] = 20
-		// scoreMap["李华"] = 30
-		// delete(scoreMap,"小明")
-		// fmt.Println(scoreMap)
+	// 删除一组键值对  delete(map, key)
+	// scoreMap := make(map[string]int)
+	// scoreMap["张三"] = 10
+	// scoreMap["小明"] = 20
+	// scoreMap["李华"] = 30
+	// delete(scoreMap,"小明")
+	// fmt.Println(scoreMap)
 
-    // rand.Seed(time.Now().UnixNano()) //初始化随机数种子
-		// var scoreMap = make(map[string]int,10)
-		// for i := 0 ; i < 10 ; i++{
-		//	// 生成0~99的随机整数
-		// 	scoreMap[fmt.Sprintf("str%v" , i)] = rand.Intn(100)
-		// }
-		// // fmt.Println(scoreMap)
-		// var keys = make([]string,0)
-		// for key := range scoreMap{
-		// 	keys = append(keys,key)
-		// }
-		// // fmt.Println(keys)
-		// // 对切片排序
-		// sort.Strings(keys)
-		// // fmt.Println(keys)
-		// for _,key := range keys{
-		// 	fmt.Println(key,scoreMap[key])
-		// }
+	// rand.Seed(time.Now().UnixNano()) //初始化随机数种子
+	// var scoreMap = make(map[string]int,10)
+	// for i := 0 ; i < 10 ; i++{
+	//	// 生成0~99的随机整数
+	// 	scoreMap[fmt.Sprintf("str%v" , i)] = rand.Intn(100)
+	// }
+	// // fmt.Println(scoreMap)
+	// var keys = make([]string,0)
+	// for key := range scoreMap{
+	// 	keys = append(keys,key)
+	// }
+	// // fmt.Println(keys)
+	// // 对切片排序
+	// sort.Strings(keys)
+	// // fmt.Println(keys)
+	// for _,key := range keys{
+	// 	fmt.Println(key,scoreMap[key])
+	// }
 
 	// 元素为map类型的切片
 	// var mapSlice = make([]map[string]string,3)
@@ -286,7 +283,6 @@ func main()  {
 	// 	wordMap[key] += 1
 	// }
 	// fmt.Println(wordMap)
-
 
 	// 结构体
 	// type person struct{
@@ -358,7 +354,6 @@ func main()  {
 	// fmt.Printf("n.c %p\n", &n.c) //n.c 0xc00001608a
 	// fmt.Printf("n.d %p\n", &n.d) //n.d 0xc00001608b
 
-
 	// type student struct{
 	// 	name string
 	// 	age int
@@ -372,7 +367,7 @@ func main()  {
 	// }
 
 	// for _,stu := range stus{
-		
+
 	// 	m[stu.name] = &stu
 	// 	/**
 	// 	由于我们在分配之前创建了一个临时变量 stu，因此所有指针都指向了同一个变量：最后一次迭代的学生*/
@@ -383,9 +378,15 @@ func main()  {
 	// 	fmt.Println(key,val)
 	// }
 
+	// ---指针--
+	// Pointer() //同级下 go run main.go pointer.go
+	// ---方法--
+	// Methods()
+	// ---goroutine--
+	// Goroutine()
+	// ---函数--
+	// Function()
 
-	testpackage.Test()
+	testpackage.Test() //不同级 go run main.go
 
 }
-
-

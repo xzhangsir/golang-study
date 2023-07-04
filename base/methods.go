@@ -1,14 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
-type person struct{
-	name,city string
-	age int8
+type person struct {
+	name, city string
+	age        int8
 }
+
 // 构造函数
 func newPerson(name, city string, age int8) *person {
 	return &person{
@@ -17,29 +18,32 @@ func newPerson(name, city string, age int8) *person {
 		age:  age,
 	}
 }
-func (p person) eat(){
-	fmt.Printf("%v在吃东西",p.name)
+func (p person) eat() {
+	fmt.Printf("%v在吃东西", p.name)
 }
+
 // 指针类型的接受者
-func (p *person) SetAge(newAge int8){
+func (p *person) SetAge(newAge int8) {
 	p.age = newAge
 }
+
 // 值类型的接受者
-func (p person) SetAge2(newAge int8){
+func (p person) SetAge2(newAge int8) {
 	p.age = newAge
 }
 
 // 结构体嵌套
-type address struct{
+type address struct {
 	provinse string
-	city string
+	city     string
 }
-type user struct{
-	name string
-	gender string
+type user struct {
+	name    string
+	gender  string
 	address address
 }
-// func main() {		
+
+// func Methods() {
 // 	// p1 := newPerson("张三", "沙河", 90)
 // 	// fmt.Printf("%#v\n", p1) //&main.person{name:"张三", city:"沙河", age:90}
 // 	// p2 := newPerson("李四", "北京", 99)
@@ -62,7 +66,6 @@ type user struct{
 //   // p1.SetAge2(30) // (*p1).SetAge2(30)
 // 	// fmt.Println(p1.age) // 90
 
-
 // 	// 结构体嵌套
 // 	// user := user{
 // 	// 	name: "小王",
@@ -75,7 +78,6 @@ type user struct{
 // 	// fmt.Println(user) //{小王 男 {山东 威海}}
 
 // }
-
 
 // 结构体的继承
 // type animal struct{
@@ -91,7 +93,7 @@ type user struct{
 // func (d *dog) wang() {
 // 	fmt.Printf("%s会汪汪汪~\n", d.name)
 // }
-// func main() {
+// func Methods() {
 // 	d := dog{
 // 		feet:4,
 // 		animal: &animal{
@@ -102,35 +104,34 @@ type user struct{
 // 	d.move() //李华会动
 // }
 
-
 // 结构体与json序列化
-type student struct{
-	ID int      `json:"id"` //通过指定tag实现json序列化该字段时的key
+type student struct {
+	ID     int    `json:"id"`               //通过指定tag实现json序列化该字段时的key
 	Gender string `json:"gender,omitempty"` //omitempty 忽略空值
-	Name string `json:"-"` // 指定json序列化/反序列化时忽略此字段
+	Name   string `json:"-"`                // 指定json序列化/反序列化时忽略此字段
 }
-type class struct{
-	Title string `json:"title"`
+type class struct {
+	Title    string `json:"title"`
 	Students []*student
 }
 
-func main(){
+func Methods() {
 	c := &class{
-		Title:"110",
-		Students:make([]*student,0,200),
+		Title:    "110",
+		Students: make([]*student, 0, 200),
 	}
-	for i := 0 ; i < 10 ; i++{
+	for i := 0; i < 10; i++ {
 		stu := &student{
-			Name:fmt.Sprintf("stu%02d",i),
+			Name:   fmt.Sprintf("stu%02d", i),
 			Gender: "男",
-			ID:i,
+			ID:     i,
 		}
-		c.Students = append(c.Students,stu)
+		c.Students = append(c.Students, stu)
 	}
 	// fmt.Println(c)
 	// //JSON序列化：结构体-->JSON格式的字符串
-	data,err := json.Marshal(c)
-	if err != nil{
+	data, err := json.Marshal(c)
+	if err != nil {
 		fmt.Println("序列化失败")
 		return
 	}

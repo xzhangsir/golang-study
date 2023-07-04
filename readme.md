@@ -21,3 +21,7 @@ require github.com/q1mi/hello latest
 ```
  go clean -modcache
 ```
+
+```
+go work init ./xx ./xx
+```

@@ -16,7 +16,7 @@ import (
 // 	fmt.Println("hello")
 // }
 
-// func main(){
+// func Goroutine(){
 
 // 	wg.Add(1) // 登记1个goroutine
 // 	go hello() // 启动另外一个goroutine去执行hello函数
@@ -25,22 +25,20 @@ import (
 
 // }
 
-
 // ----启动多个goroutine---
 // var wg sync.WaitGroup
 // func hello(i int){
 // 	defer wg.Done() // goroutine结束就登记-1
 // 	fmt.Println(i)
 // }
-// func main(){
+// func Goroutine(){
 // 	for i := 0 ; i < 10 ; i++{
 // 		wg.Add(1) // 启动一个goroutine就登记+1
 // 		go hello(i)
 // 	}
 // 	wg.Wait() // 等待所有登记的goroutine都结束
-	
-// }
 
+// }
 
 //----channel类型---
 
@@ -48,14 +46,14 @@ import (
 // var ch2 chan bool  // 声明一个传递布尔型的通道
 // var ch3 chan []int // 声明一个传递int切片的通道
 
-// 初始化channel  
+// 初始化channel
 // make(chan 元素类型,[缓存大小])
 
 // 通道有 发送 接受 关闭三种操作
 // ch := make(chan int)
-// // 发送 
+// // 发送
 // ch <- 10 //把10发送到ch中
-// // 接受 
+// // 接受
 // x := <- ch  // 从ch中接收值并赋值给变量x
 // <- ch   //从ch中接受值，忽略结果
 // // 关闭
@@ -68,7 +66,7 @@ import (
 // 	x := <-c
 // 	fmt.Println("接收成功", x)
 // }
-// func main(){
+// func Goroutine(){
 // 	ch := make(chan int)
 // 	wg.Add(1)
 // 	go recv(ch) //创建一个 goroutine 从通道接收值
@@ -77,9 +75,8 @@ import (
 // 	wg.Wait()
 // }
 
-
 // 有缓冲的通道
-// func main(){
+// func Goroutine(){
 // 	ch := make(chan int,1)
 // 	ch <- 10
 // 	fmt.Println("发送成功")
@@ -106,7 +103,7 @@ import (
 // 	}
 // }
 
-// func main(){
+// func Goroutine(){
 // 	ch := make(chan int,2)
 // 	ch <- 10
 // 	ch <- 20
@@ -142,15 +139,14 @@ import (
 // 	return sum
 // }
 
-// func main(){
+// func Goroutine(){
 // 	ch := Producer()
 // 	res := Consumber(ch)
 // 	fmt.Println(res) //25
 // }
 
-
 // select多路复用
-// func main(){
+// func Goroutine(){
 // 	ch := make(chan int,1)
 // 	for i := 1 ; i <= 10 ; i++{
 // 		select{
@@ -163,7 +159,6 @@ import (
 // // 第二次 for 循环时，i = 2，由于通道缓冲区已满，所以ch <- i这个分支不满足，而x := <-ch这个分支可以执行，从通道接收值1并赋值给变量 x ，所以会在终端打印出 1；
 // // 后续的 for 循环以此类推会依次打印出3、5、7、9。
 // }
-
 
 // 互斥锁
 // 如果不加锁
@@ -185,7 +180,7 @@ import (
 // 	}
 // 	wg.Done()
 // }
-// func main(){
+// func Goroutine(){
 // 	wg.Add(2)
 // 	go add()
 // 	go add()
@@ -193,8 +188,7 @@ import (
 // 	fmt.Println(x) //10000
 // }
 
-
-// sync.Map 
+// sync.Map
 // 不能在多个 goroutine 中并发对内置的 map 进行读写操作，
 // 否则会存在数据竞争问题。
 
@@ -208,16 +202,16 @@ var m = sync.Map{}
 // 	m[key] = v
 // }
 
-func main(){
+func Goroutine() {
 	wg := sync.WaitGroup{}
-	for i:= 0 ; i < 10 ; i++{
+	for i := 0; i < 10; i++ {
 		wg.Add(1)
-		go func(n int){
+		go func(n int) {
 			key := strconv.Itoa(n)
 			// 整数转字符串
 			// set(key, n)
 			// fmt.Println(key,get(key))
-			m.Store(key,i) // 存储key-value
+			m.Store(key, i)         // 存储key-value
 			value, _ := m.Load(key) // 根据key取值
 			fmt.Printf("k=:%v,v:=%v\n", key, value)
 			wg.Done()
@@ -225,5 +219,3 @@ func main(){
 	}
 	wg.Wait()
 }
-
-
