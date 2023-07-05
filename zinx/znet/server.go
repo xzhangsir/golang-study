@@ -23,8 +23,8 @@ func NewServer(name string) ziface.IServer {
 	s := &Server{
 		Name:      name,
 		IPVersion: "tcp4",
-		IP:        "0.0.0.0",
-		Port:      7777,
+		IP:        "127.0.0.1",
+		Port:      8888,
 	}
 	return s
 }
