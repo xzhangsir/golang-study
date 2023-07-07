@@ -1,6 +1,7 @@
 package znet
 
 import (
+	"fmt"
 	"net"
 	"zinx/ziface"
 )
@@ -32,9 +33,33 @@ func NewConntion(conn *net.TCPConn, connId uint32, callback_api ziface.HandFunc)
 
 // 启动连接，让当前连接开始工作
 func (c *Connection) Start() {
+	// 开启处理该链接 读取到客户端数据之后的业务请求
+	go c.StartReader()
+	// for {
+	// 	select {
+	// 	case <-c.ExitBuffChan:
+	// 		// 得到退出消息 不再阻塞
+	// 		return
+	// 	}
+	// }
+	// 优化如下
+	for range c.ExitBuffChan {
+		return
+	}
 
 }
 func (c *Connection) Stop() {
+	// 如果当前链接已经关闭
+	if c.isClosed {
+		return
+	}
+	c.isClosed = true
+	// 关闭socket链接
+	c.Conn.Close()
+	//通知从缓冲队列读数据的业务，该链接已经关闭
+	c.ExitBuffChan <- true
+	//关闭该链接全部管道
+	close(c.ExitBuffChan)
 
 }
 func (c *Connection) GetConnID() uint32 {
@@ -45,4 +70,27 @@ func (c *Connection) GetTCPConnection() *net.TCPConn {
 }
 func (c *Connection) RemoteAddr() net.Addr {
 	return c.Conn.RemoteAddr()
+}
+
+// 处理conn读数据的Goroutine
+func (c *Connection) StartReader() {
+	fmt.Println("处理conn读数据的goroutine在运行")
+	defer fmt.Println(c.RemoteAddr().String(), "conn exit")
+	defer c.Stop()
+	for {
+		// 读取我们最大的数据到buf中
+		buf := make([]byte, 512)
+		cnt, err := c.Conn.Read(buf)
+		if err != nil {
+			fmt.Println("记录(recv) buf err ", err)
+			c.ExitBuffChan <- true
+			continue
+		}
+		// 调用当前链接业务
+		if err := c.handleAPI(c.Conn, buf, cnt); err != nil {
+			fmt.Println("connID ", c.ConnID, " handle is error")
+			c.ExitBuffChan <- true
+			return
+		}
+	}
 }

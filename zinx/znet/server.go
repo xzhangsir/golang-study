@@ -1,6 +1,7 @@
 package znet
 
 import (
+	"errors"
 	"fmt"
 	"net"
 	"time"
@@ -48,6 +49,7 @@ func (s *Server) Start() {
 		}
 		//已经监听成功
 		fmt.Println("开启 Zinx 服务  ", s.Name, " 成功,监听中...")
+		var cid uint32 = 0
 		// 3 阻塞的等待客户端链接 处理客户端链接的业务
 		for {
 			conn, err := listenner.AcceptTCP()
@@ -56,21 +58,27 @@ func (s *Server) Start() {
 				continue
 			}
 			//不断的循环从客户端获取数据
-			go func() {
-				for {
-					buf := make([]byte, 512)
-					cnt, err := conn.Read(buf)
-					if err != nil {
-						fmt.Println("recv buf err ", err)
-						continue
-					}
-					//回显
-					if _, err := conn.Write(buf[:cnt]); err != nil {
-						fmt.Println("write back buf err ", err)
-						continue
-					}
-				}
-			}()
+			// go func() {
+			// 	for {
+			// 		buf := make([]byte, 512)
+			// 		cnt, err := conn.Read(buf)
+			// 		if err != nil {
+			// 			fmt.Println("recv buf err ", err)
+			// 			continue
+			// 		}
+			// 		//回显
+			// 		if _, err := conn.Write(buf[:cnt]); err != nil {
+			// 			fmt.Println("write back buf err ", err)
+			// 			continue
+			// 		}
+			// 	}
+			// }()
+
+			dealConn := NewConntion(conn, cid, CallBackToClient)
+			cid++
+			// 启动当前链接的处理业务
+			dealConn.Start()
+
 		}
 	}()
 }
@@ -91,4 +99,13 @@ func (s *Server) Serve() {
 	for {
 		time.Sleep(10 * time.Second)
 	}
+}
+
+// ******定义当前客户端链接的handle api ******
+func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
+	if _, err := conn.Write(data[:cnt]); err != nil {
+		fmt.Println("write back buf err ", err)
+		return errors.New("CallBackToClient error")
+	}
+	return nil
 }
