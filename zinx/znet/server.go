@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"zinx/utils"
 	"zinx/ziface"
 )
 
@@ -20,12 +21,14 @@ type Server struct {
 	Router ziface.IRouter
 }
 
-func NewServer(name string) ziface.IServer {
+func NewServer() ziface.IServer {
+	//先初始化全局配置文件
+	utils.GlobalObject.Reload()
 	s := &Server{
-		Name:      name,
+		Name:      utils.GlobalObject.Name,
 		IPVersion: "tcp4",
-		IP:        "127.0.0.1",
-		Port:      8888,
+		IP:        utils.GlobalObject.Host,
+		Port:      utils.GlobalObject.TcpPort,
 		Router:    nil,
 	}
 	return s
