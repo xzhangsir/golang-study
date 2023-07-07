@@ -1,7 +1,6 @@
 package znet
 
 import (
-	"errors"
 	"fmt"
 	"net"
 	"time"
@@ -17,7 +16,8 @@ type Server struct {
 	//服务绑定的IP地址
 	IP string
 	//服务绑定的端口
-	Port int
+	Port   int
+	Router ziface.IRouter
 }
 
 func NewServer(name string) ziface.IServer {
@@ -26,6 +26,7 @@ func NewServer(name string) ziface.IServer {
 		IPVersion: "tcp4",
 		IP:        "127.0.0.1",
 		Port:      8888,
+		Router:    nil,
 	}
 	return s
 }
@@ -74,7 +75,7 @@ func (s *Server) Start() {
 			// 	}
 			// }()
 
-			dealConn := NewConntion(conn, cid, CallBackToClient)
+			dealConn := NewConntion(conn, cid, s.Router)
 			cid++
 			// 启动当前链接的处理业务
 			dealConn.Start()
@@ -101,11 +102,18 @@ func (s *Server) Serve() {
 	}
 }
 
-// ******定义当前客户端链接的handle api ******
-func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
-	if _, err := conn.Write(data[:cnt]); err != nil {
-		fmt.Println("write back buf err ", err)
-		return errors.New("CallBackToClient error")
-	}
-	return nil
+// 路由功能：给当前服务注册一个路由业务方法，供客户端链接处理使用
+func (s *Server) AddRouter(router ziface.IRouter) {
+	s.Router = router
+
+	fmt.Println("Add Router 成功! ")
 }
+
+// ******定义当前客户端链接的handle api ******
+// func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
+// 	if _, err := conn.Write(data[:cnt]); err != nil {
+// 		fmt.Println("write back buf err ", err)
+// 		return errors.New("CallBackToClient error")
+// 	}
+// 	return nil
+// }
