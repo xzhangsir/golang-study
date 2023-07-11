@@ -20,7 +20,7 @@ func main() {
 // Test PreHandle
 func (this *PingRouter) PreHandle(request ziface.IRequest) {
 	fmt.Println("Call Router 前")
-	_, err := request.GetConnection().GetTCPConnection().Write([]byte("before ping ....\n"))
+	_, err := request.GetConnection().GetTCPConnection().Write([]byte("before ping ..."))
 	if err != nil {
 		fmt.Println("call back 前 error")
 	}
@@ -28,17 +28,21 @@ func (this *PingRouter) PreHandle(request ziface.IRequest) {
 
 // Test Handle
 func (this *PingRouter) Handle(request ziface.IRequest) {
-	fmt.Println("Call PingRouter 正在处理")
-	_, err := request.GetConnection().GetTCPConnection().Write([]byte("ping...ping...ping\n"))
+	fmt.Println("Call PingRouter Handle")
+	//先读取客户端的数据，再回写ping...ping...ping
+	fmt.Println("recv from client : msgId=", request.GetMsgID(), ", data=", string(request.GetData()))
+
+	//回写数据
+	err := request.GetConnection().SendMsg(1, []byte("ping...ping...ping"))
 	if err != nil {
-		fmt.Println("call back 正在处理 error")
+		fmt.Println(err)
 	}
 }
 
 // Test PostHandle
 func (this *PingRouter) PostHandle(request ziface.IRequest) {
 	fmt.Println("Call Router 后")
-	_, err := request.GetConnection().GetTCPConnection().Write([]byte("After ping .....\n"))
+	_, err := request.GetConnection().GetTCPConnection().Write([]byte("After ping ....."))
 	if err != nil {
 		fmt.Println("call back 后 error")
 	}

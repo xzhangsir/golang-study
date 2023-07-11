@@ -37,7 +37,7 @@ func NewServer() ziface.IServer {
 // ********** 实现 ziface.IServer 里的全部接口方法 **********
 // 开启服务网络
 func (s *Server) Start() {
-	fmt.Printf("IP为: %s, 端口为 %d,的服务器列表服务器正在启动\n", s.IP, s.Port)
+	fmt.Printf("IP为: %s, 端口为 %d,的服务器列表服务器正在启动", s.IP, s.Port)
 	go func() {
 		// 1 获取一个tcp的addr
 		addr, err := net.ResolveTCPAddr(s.IPVersion, fmt.Sprintf("%s:%d", s.IP, s.Port))

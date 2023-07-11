@@ -40,7 +40,7 @@ func init() {
 		TcpPort:       8888,
 		Host:          "127.0.0.1",
 		MaxConn:       12000,
-		MaxPacketSize: 4096,
+		MaxPacketSize: 4294967295,
 	}
 
 	//从配置文件中加载一些用户配置的参数
