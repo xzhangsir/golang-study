@@ -2,5 +2,7 @@ package main
 
 func main() {
 	// 观察者模式
-	ObserveFunc()
+	// ObserveFunc()
+	// 策略模式
+	Strategy()
 }
