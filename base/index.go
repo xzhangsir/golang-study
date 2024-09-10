@@ -1,10 +1,15 @@
 package base
 
 func Init() {
+	// 小练习
+	// example.Students()
+	// example.ParseIni()
+	// example.ObserveFunc()
+	// example.EgFunc()
 	// 进阶
-	High()
+	// High()
 	//并发
-	GoroutineFunc()
+	// GoroutineFunc()
 	// 命令行参数
 	// flagFunc()
 	// 文件操作
@@ -83,7 +88,7 @@ func Init() {
 	   	fmt.Println(s)              //[1 3 7 9] */
 	/* s := []int{3, 1, 4, 2, 9}
 	sort.Ints(s) //升序
-	// sort.Sort(sort.Reverse(sort.IntSlice(s))) //降序
+	// sort.Sort(sort.Reverse(sort.IntSlice(s))) l//降序
 	// index := sort.SearchInts(s, 4) //s中找5
 	// if index < len(s) && s[index] == 4 {
 	// 	fmt.Println("找到了")

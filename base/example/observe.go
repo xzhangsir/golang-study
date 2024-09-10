@@ -1,9 +1,11 @@
-package main
+package example
 
 import (
 	"fmt"
 	"sync"
 )
+
+// 观察者模式
 
 // Observer 接口定义观察者的行为
 type Observer interface {
