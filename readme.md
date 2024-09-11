@@ -29,7 +29,8 @@ go work init ./xx ./xx
 <!-- chat即时聊天系统  -->
 
 ```
- go run main.go server.go user.go
-
+ //在当前文件夹下
+ go run main.go user.go
+//在当前文件夹下
  go run client.go
 ```
