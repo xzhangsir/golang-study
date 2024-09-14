@@ -74,7 +74,7 @@ func (c *Cache) Add(key string, value Value) {
 
 func (c *Cache) ShowList() {
 	for k, v := range c.cache {
-		fmt.Println(k, v.Value)
+		fmt.Println(k, *v.Value.(*entry))
 	}
 }
 
