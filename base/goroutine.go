@@ -5,6 +5,8 @@ func GoroutineFunc() {
 	// multRun()
 	// 通道
 	// channelFunc()
+	// context
+	// contextFunc()
 }
 
 /* //----启动单个goroutine----
@@ -196,3 +198,85 @@ func multRun() {
 // 	wg.Wait()
 // }
 */
+
+/*----context-----*/
+
+/*
+var wg sync.WaitGroup
+
+	func doTash(n int) {
+		time.Sleep(time.Duration(n))
+		fmt.Printf("Task %d Done\n", n)
+		wg.Done()
+	}
+
+	func contextFunc() {
+		for i := 0; i < 3; i++ {
+			go doTash(i + 1)
+			wg.Add(1)
+		}
+		// wg.Wait() 会等待所有的子协程任务全部完成，所有子协程结束后，才会执行 wg.Wait() 后面的代码
+		// 如何主动通知子协程退出？ 下一个例子
+		wg.Wait()
+		fmt.Println("主结束")
+	}
+*/
+
+/*
+	// select+chan
+
+// 子协程使用 for 循环定时轮询，如果 stop 信道有值，则退出，否则继续轮询
+var stop chan bool
+
+	func reqTask(name string) {
+		for {
+			select {
+			case <-stop:
+				fmt.Println("stop", name)
+				return
+			default:
+				fmt.Println(name, "send request")
+				time.Sleep(1 * time.Second)
+			}
+		}
+	}
+
+	func contextFunc() {
+		stop = make(chan bool)
+		go reqTask("work1")
+		time.Sleep(3 * time.Second)
+		stop <- true
+		time.Sleep(3 * time.Second)
+		fmt.Println("主结束")
+	}
+*/
+/* func reqTask(ctx context.Context, name string) {
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("stop", name)
+			return
+		default:
+			op := ctx.Value("options")
+			if op != nil {
+				fmt.Println(name, "send request", op)
+			} else {
+				fmt.Println(name, "send request")
+			}
+
+			time.Sleep(1 * time.Second)
+		}
+	}
+}
+
+func contextFunc() {
+	ctx, cancal := context.WithCancel(context.Background())
+	go reqTask(ctx, "work1")
+	// 往子协程中传参
+	ctxv := context.WithValue(ctx, "options", "我是值")
+	go reqTask(ctxv, "work2")
+	time.Sleep(3 * time.Second)
+	cancal()
+	time.Sleep(3 * time.Second)
+	fmt.Println("主结束")
+} */

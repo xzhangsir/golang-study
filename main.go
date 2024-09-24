@@ -3,15 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
+	"golang-study/base"
 	"golang-study/cache"
 	"log"
 	"net/http"
 )
 
 func main() {
-	// base.Init()
+	base.Init()
 	// ginweb.Init()
-	testCache()
+	// testCache()
 }
 
 // type String string
