@@ -61,6 +61,7 @@ func (f *fileLog) log(lv LogLevel, format string, a ...interface{}) {
 			return
 		}
 		f.fileObj = newFile
+		// 将格式化的文本写入到标准输出
 		fmt.Fprintf(f.fileObj, "[%s] [%s] 文件名[%s] 方法名[%s] 行数[%v] %s\n", now.Format("2006-01-02 15:04:05"), lev, fileName, funcName, lineNo, msg)
 		if lv >= err {
 			newErrFileObj, err := f.splitLogFile(f.errFileObj)
@@ -68,6 +69,7 @@ func (f *fileLog) log(lv LogLevel, format string, a ...interface{}) {
 				return
 			}
 			f.errFileObj = newErrFileObj
+			// 将格式化的文本写入到标准输出
 			fmt.Fprintf(f.errFileObj, "[%s] [%s] 文件名[%s] 方法名[%s] 行数[%v] %s\n", now.Format("2006-01-02 15:04:05"), lev, fileName, funcName, lineNo, msg)
 		}
 	}

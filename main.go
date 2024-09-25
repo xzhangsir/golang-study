@@ -1,20 +1,17 @@
 package main
 
-import (
-	"flag"
-	"fmt"
-	"golang-study/base"
-	"golang-study/cache"
-	"log"
-	"net/http"
-)
+import "golang-study/xgin"
 
 func main() {
-	base.Init()
+	// base.Init()
 	// ginweb.Init()
 	// testCache()
+	xgin.Xgin()
 }
 
+// xgin框架开发
+
+/*  分布式缓存
 // type String string
 
 // func (d String) Len() int {
@@ -123,3 +120,4 @@ func testCache() {
 // go run main.go -port=8002
 // go run main.go -port=8003 -api=1
 // http://localhost:9999/api?key=Tom
+*/
