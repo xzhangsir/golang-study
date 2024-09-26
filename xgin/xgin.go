@@ -1,25 +1,23 @@
 package xgin
 
 import (
-	"fmt"
 	"net/http"
 )
 
-type HandlerFunc func(http.ResponseWriter, *http.Request)
+type HandlerFunc func(c *Context)
 
 type Engine struct {
-	router map[string]HandlerFunc
+	router *router
 }
 
 func New() *Engine {
 	return &Engine{
-		router: make(map[string]HandlerFunc),
+		router: NewRouter(),
 	}
 }
 
 func (engine *Engine) addRoute(method string, pattern string, handler HandlerFunc) {
-	key := method + "-" + pattern
-	engine.router[key] = handler
+	engine.router.addRoute(method, pattern, handler)
 }
 
 func (engine *Engine) GET(pattern string, handler HandlerFunc) {
@@ -30,16 +28,11 @@ func (engine *Engine) POST(pattern string, handler HandlerFunc) {
 	engine.addRoute("POST", pattern, handler)
 }
 
-func (enging *Engine) Run(addr string) (err error) {
-	return http.ListenAndServe(addr, enging)
+func (engine *Engine) Run(addr string) (err error) {
+	return http.ListenAndServe(addr, engine)
 }
 
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	key := req.Method + "-" + req.URL.Path
-	if Handler, ok := engine.router[key]; ok {
-		Handler(w, req)
-	} else {
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintf(w, "404 NOT FOUND: %s\n", req.URL)
-	}
+	c := newContext(w, req)
+	engine.router.handle(c)
 }
