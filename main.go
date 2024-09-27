@@ -135,9 +135,12 @@ func testXgin() {
 	r.GET("/hello/:name/name", func(c *xgin.Context) {
 		c.String(http.StatusOK, "/hello/:name/name %s, you're at %s\n", c.Param("name"), c.Path)
 	})
-	r.GET("/hello/zx", func(c *xgin.Context) {
-		c.String(http.StatusOK, "/hello/zx %s, you're at %s\n", "123", c.Path)
+	r.GET("/hello/:name", func(c *xgin.Context) {
+		c.String(http.StatusOK, "/hello/:name %s, you're at %s\n", c.Param("name"), c.Path)
 	})
+	// r.GET("/hello/zx", func(c *xgin.Context) {
+	// 	c.String(http.StatusOK, "/hello/zx %s, you're at %s\n", "123", c.Path)
+	// })
 	// r.POST("/login", func(c *xgin.Context) {
 	// 	c.JSON(http.StatusOK, xgin.H{
 	// 		"username": c.PostForm("username"),
