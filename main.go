@@ -126,12 +126,12 @@ func testCache() {
 func testXgin() {
 	r := xgin.New()
 
-	// r.GET("/", func(c *xgin.Context) {
-	// 	c.HTML(http.StatusOK, "<h1>hello</h1>")
-	// })
-	// r.GET("/hello", func(c *xgin.Context) {
-	// 	c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
-	// })
+	r.GET("/", func(c *xgin.Context) {
+		c.HTML(http.StatusOK, "<h1>hello</h1>")
+	})
+	r.GET("/hello", func(c *xgin.Context) {
+		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
+	})
 	r.GET("/hello/:name/name", func(c *xgin.Context) {
 		c.String(http.StatusOK, "/hello/:name/name %s, you're at %s\n", c.Param("name"), c.Path)
 	})
