@@ -118,4 +118,6 @@ func (h *httpGetter) Get(group string, key string) ([]byte, error) {
 
 // 编译时检查 *httpGetter 类型是否确实实现了 PeerGetter 接口
 var _ PeerGetter = (*httpGetter)(nil)
-var _ PeerPicker = (*HttpPool)(nil)
+
+// 确保HttpPool实现了接口PeerPicker
+var _ PeerPicker = (*HttpPool)(nil) // 也可写成  var _PerrPicker = &Http{}

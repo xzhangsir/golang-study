@@ -9,7 +9,7 @@ func Init() {
 	// 进阶
 	// High()
 	//并发
-	GoroutineFunc()
+	// GoroutineFunc()
 	// 命令行参数
 	// flagFunc()
 	// 文件操作
@@ -231,7 +231,7 @@ func Init() {
 	   	// structjson() */
 
 	// 接口
-	// interfacefunc()
+	interfacefunc()
 
 }
 
@@ -357,6 +357,37 @@ func structjson() {
 		}
 		focus(p)
 	}
+	// 		// 接口型函数只能应用于接口内部只定义了一个方法的情况
+	// type Getter interface {
+	// 	Get(key string) ([]byte, error)
+	// }
+	// type GetterFunc func(key string) ([]byte, error)
+
+	// func (f GetterFunc) Get(key string) ([]byte, error) {
+	// 	return f(key)
+	// }
+	// func GetFromSource(getter Getter, key string) []byte {
+	// 	buf, err := getter.Get(key)
+	// 	if err == nil {
+	// 		return buf
+	// 	}
+	// 	return nil
+	// }
+
+	// func test(key string) ([]byte, error) {
+	// 	return []byte(key), nil
+	// }
+
+	// func interfacefunc() {
+	// 	// 将 test 强制类型转换为 GetterFunc，GetterFunc 实现了接口 Getter，是一个合法参数
+	// 	// GetFromSource(GetterFunc(test), "hello")
+	// 	// 实现了 Getter 接口的结构体作为参数
+	// 	// GetFromSource(GetterFunc(func(key string) ([]byte, error) {
+	// 	// 	return []byte(key), nil
+	// 	// }), "hello")
+	// 	// 既能够将普通的函数类型（需类型转换）作为参数，也可以将结构体作为参数，
+	// 	// 使用更为灵活，可读性也更好，这就是接口型函数的价值
+	// }
 */
 
 /* func flagFunc() {
@@ -390,14 +421,16 @@ func structjson() {
 
 } */
 
-/* const (
-		n1 = iota //0
-		n2        //1
-		n3        //2
-		n4        //3
-	)
+/*
+	 const (
+			n1 = iota //0
+			n2        //1
+			n3        //2
+			n4        //3
+		)
 
 const (
+
 		n1 = iota //0
 		n2 = 100  //100
 		n3 = iota //2
@@ -405,7 +438,9 @@ const (
 	)
 
 const (
+
 		a, b = iota + 1, iota + 2 //1,2
 		c, d                      //2,3
 		e, f                      //3,4
-	) */
+	)
+*/
