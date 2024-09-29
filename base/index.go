@@ -231,7 +231,7 @@ func Init() {
 	   	// structjson() */
 
 	// 接口
-	interfacefunc()
+	// interfacefunc()
 
 }
 
