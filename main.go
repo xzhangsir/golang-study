@@ -2,7 +2,9 @@ package main
 
 import (
 	"golang-study/xgin"
+	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -159,6 +161,18 @@ func testXgin() {
 	// 	}
 	// })
 
+	onlyForV2 := func() xgin.HandlerFunc {
+		return func(c *xgin.Context) {
+			// Start timer
+			t := time.Now()
+			// if a server error occurred
+			// c.Fail(500, "Internal Server Error")
+			// Calculate resolution time
+			log.Printf("middle-[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
+		}
+	}
+
+	r.Use(xgin.Logger())
 	r.GET("/index", func(c *xgin.Context) {
 		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
 	})
@@ -174,6 +188,7 @@ func testXgin() {
 		})
 	}
 	v2 := r.Group("/v2")
+	r.Use(onlyForV2())
 	{
 		v2.GET("/hello/:name", func(c *xgin.Context) {
 			// expect /hello/zx
