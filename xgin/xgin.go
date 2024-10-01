@@ -21,6 +21,12 @@ type Engine struct {
 	groups []*RouterGroup
 }
 
+func Default() *Engine {
+ engine := New()
+ engine.Use(Logger(),Recovery())
+ return engine
+}
+
 func New() *Engine {
 	engine := &Engine{router: NewRouter()}
 	engine.RouterGroup = &RouterGroup{engine: engine}
