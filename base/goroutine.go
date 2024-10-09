@@ -74,7 +74,7 @@ func multRun() {
 
 // 有缓冲的通道
 // func channelFunc(){
-// 	ch := make(chan int,1)
+// 	ch := make(chan int,1)   // 缓冲区容量为 1
 // 	ch <- 10
 // 	fmt.Println("发送成功")
 // }
