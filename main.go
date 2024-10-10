@@ -1,17 +1,19 @@
 package main
 
 import (
+	"golang-study/base"
 	"golang-study/xgin"
+
 	// "log"
 	"net/http"
 	// "time"
 )
 
 func main() {
-	// base.Init()
+	base.Init()
 	// ginweb.Init()
 	// testCache()
-	testXgin()
+	// testXgin()
 }
 
 /*  分布式缓存
@@ -198,7 +200,6 @@ func testXgin() {
 	// }
 
 	// r.Run(":8081")
-
 
 	r := xgin.Default()
 	r.GET("/", func(c *xgin.Context) {

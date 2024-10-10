@@ -1,5 +1,10 @@
 package base
 
+import (
+	"fmt"
+	"math/rand"
+)
+
 // 一些进阶的知识
 /* func High() {
 
@@ -103,3 +108,17 @@ func filterFunc[T any](arr []T, in bool, f func(T) bool) []T {
 	return result
 }
 */
+
+func High() {
+	// 随机字符串
+	const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	randomString := func(n int) string {
+		b := make([]byte, n)
+		for i := range b {
+			b[i] = letterBytes[rand.Intn(len(letterBytes))]
+		}
+		return string(b)
+	}
+	str := randomString(6)
+	fmt.Println(str)
+}

@@ -6,8 +6,8 @@ func Init() {
 	// example.ParseIni()
 	// example.ObserveFunc()
 	// example.EgFunc()
-	// 进阶
-	// High()
+	// 进阶和技巧
+	High()
 	//并发
 	// GoroutineFunc()
 	// 命令行参数
