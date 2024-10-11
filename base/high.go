@@ -121,4 +121,9 @@ func High() {
 	}
 	str := randomString(6)
 	fmt.Println(str)
+
+	var builder strings.Builder    // 声明一个 Builder 变量
+	builder.WriteString("Hello, ") // 追加字符串
+	builder.WriteString("world!")  // 追加字符串
+	fmt.Println(builder.String())  // 输出结果
 }
