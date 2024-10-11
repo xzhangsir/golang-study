@@ -3,6 +3,7 @@ package base
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 )
 
 // 一些进阶的知识
