@@ -1,11 +1,5 @@
 package base
 
-import (
-	"fmt"
-	"math/rand"
-	"strings"
-)
-
 // 一些进阶的知识
 /* func High() {
 
@@ -111,7 +105,7 @@ func filterFunc[T any](arr []T, in bool, f func(T) bool) []T {
 */
 
 func High() {
-	// 随机字符串
+	/* // 随机字符串
 	const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	randomString := func(n int) string {
 		b := make([]byte, n)
@@ -121,10 +115,11 @@ func High() {
 		return string(b)
 	}
 	str := randomString(6)
-	fmt.Println(str)
+	fmt.Println(str) */
 
-	var builder strings.Builder    // 声明一个 Builder 变量
-	builder.WriteString("Hello, ") // 追加字符串
-	builder.WriteString("world!")  // 追加字符串
-	fmt.Println(builder.String())  // 输出结果
+	/* 	var builder strings.Builder    // 声明一个 Builder 变量
+	   	builder.WriteString("Hello, ") // 追加字符串
+	   	builder.WriteString("world!")  // 追加字符串
+	   	fmt.Println(builder.String())  // 输出结果 */
+
 }

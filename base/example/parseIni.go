@@ -23,6 +23,7 @@ func loadIni(data interface{}) (err error) {
 	// 参数校验
 	// 传进来的 data 必须是指针类型
 	t := reflect.TypeOf(data)
+	// Kind 获取具体的类别
 	if t.Kind() != reflect.Ptr {
 		err = fmt.Errorf("data 不是指针类型")
 		return
