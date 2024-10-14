@@ -443,4 +443,12 @@ const (
 		c, d                      //2,3
 		e, f                      //3,4
 	)
+
+
+rune 类型：代表一个Unicode码点，等同于int32，用于处理Unicode字符。
+byte类型：作为uint8的别名，常用于处理字节数据。
+s2 := "小白兔"
+s3 := []rune(s2)        //把字符串强制转成rune切片
+s3[0] = '大'             //注意 这里需要使用单引号的字符，而不是双引号的字符串
+fmt.Println(string(s3)) //把rune类型的s3强转成字符串
 */
