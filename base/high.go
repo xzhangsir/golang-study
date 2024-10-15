@@ -121,5 +121,4 @@ func High() {
 	   	builder.WriteString("Hello, ") // 追加字符串
 	   	builder.WriteString("world!")  // 追加字符串
 	   	fmt.Println(builder.String())  // 输出结果 */
-
 }

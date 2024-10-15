@@ -93,6 +93,7 @@ func Students() {
 		switch status {
 		case 1:
 			c.show()
+			// fallthrough  继续执行下一个case
 		case 2:
 			c.add()
 		case 3:

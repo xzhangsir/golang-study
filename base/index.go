@@ -7,7 +7,7 @@ func Init() {
 	// example.ObserveFunc()
 	// example.EgFunc()
 	// 进阶和技巧
-	High()
+	// High()
 	//并发
 	// GoroutineFunc()
 	// 命令行参数
