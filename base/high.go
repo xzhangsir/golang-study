@@ -121,4 +121,18 @@ func High() {
 	   	builder.WriteString("Hello, ") // 追加字符串
 	   	builder.WriteString("world!")  // 追加字符串
 	   	fmt.Println(builder.String())  // 输出结果 */
+
+	/* 	// 单例模式
+	   	type singleton struct{}
+	   	var instance *singleton
+	   	var once sync.Once
+	   	GetInstance := func() *singleton {
+	   		// once.Do 并发的场景下只会执行一次
+	   		once.Do(func() {
+	   			instance = &singleton{}
+	   		})
+	   		return instance
+	   	}
+	   	GetInstance() */
+
 }
