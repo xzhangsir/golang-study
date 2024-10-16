@@ -4,7 +4,7 @@ func GoroutineFunc() {
 	// singleRun()
 	// multRun()
 	// 通道
-	channelFunc()
+	// channelFunc()
 	// context
 	// contextFunc()
 }

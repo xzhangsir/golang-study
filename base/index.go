@@ -7,9 +7,9 @@ func Init() {
 	// example.ObserveFunc()
 	// example.EgFunc()
 	// 进阶和技巧
-	// High()
+	High()
 	//并发
-	GoroutineFunc()
+	// GoroutineFunc()
 	// 命令行参数
 	// flagFunc()
 	// 文件操作
@@ -325,6 +325,49 @@ func structjson() {
 	json.Unmarshal([]byte(str), c1)
 	fmt.Println((*c1).Title)
 }
+	func structjson() {
+	type UserInfo struct {
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}
+	user := UserInfo{
+		Name: "zx",
+		Age:  12,
+	}
+	// u1, _ := json.Marshal(&user)
+	// var m = make(map[string]interface{})
+	// _ = json.Unmarshal(u1, &m)
+	// fmt.Println(m) // json 序列号和反序列号后int变为float64
+	// for k, v := range m {
+	// 	fmt.Printf("key:%v value:%v value type:%T\n", k, v, v)
+	// }
+
+	ToMap := func(in interface{}, tagName string) (map[string]interface{}, error) {
+		out := make(map[string]interface{})
+		v := reflect.ValueOf(in)
+		if v.Kind() == reflect.Ptr {
+			v = v.Elem()
+		}
+		if v.Kind() != reflect.Struct { // 非结构体返回错误提示
+			return nil, fmt.Errorf("ToMap only accepts struct or struct pointer; got %T", v)
+		}
+		t := v.Type()
+		for i := 0; i < v.NumField(); i++ {
+			fi := t.Field(i)
+			if tagValue := fi.Tag.Get(tagName); tagValue != "" {
+				out[tagValue] = v.Field(i).Interface()
+			}
+		}
+		return out, nil
+	}
+
+	m, _ := ToMap(&user, "json")
+	fmt.Println(m)
+	for k, v := range m {
+		fmt.Printf("key:%v value:%v value type:%T\n", k, v, v)
+	}
+}
+
 */
 
 /*

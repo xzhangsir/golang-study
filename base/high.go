@@ -134,5 +134,4 @@ func High() {
 	   		return instance
 	   	}
 	   	GetInstance() */
-
 }
