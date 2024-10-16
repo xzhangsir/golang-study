@@ -9,7 +9,7 @@ func Init() {
 	// 进阶和技巧
 	// High()
 	//并发
-	// GoroutineFunc()
+	GoroutineFunc()
 	// 命令行参数
 	// flagFunc()
 	// 文件操作
@@ -295,6 +295,8 @@ type Student struct {
 	Name string `json:"name"`
 	Sex  string `json:"sex"`
 	Age  int    `json:"age"`
+	//   Email string   `json:"email,omitempty"` //omitempty忽略空值
+	// Weight float64 `json:"-"` // -指定json序列化/反序列化时忽略此字段
 }
 type classes struct {
 	Title    string    `json:"title"`

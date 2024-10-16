@@ -4,7 +4,7 @@ func GoroutineFunc() {
 	// singleRun()
 	// multRun()
 	// 通道
-	// channelFunc()
+	channelFunc()
 	// context
 	// contextFunc()
 }
@@ -280,3 +280,52 @@ func contextFunc() {
 	time.Sleep(3 * time.Second)
 	fmt.Println("主结束")
 } */
+
+/*
+// Go两个goroutine交替打印1-10
+// func channelFunc() {
+// 	// 无缓存通道
+// 	var wg sync.WaitGroup
+// 	turn := make(chan struct{})
+// 	wg.Add(2)
+// 	go func() {
+// 		defer wg.Done()
+// 		for i := 1; i <= 10; i++ {
+// 			<-turn
+// 			if i%2 == 1 {
+// 				fmt.Println("#", i)
+// 			}
+// 		}
+// 	}()
+// 	go func() {
+// 		defer wg.Done()
+// 		for i := 1; i <= 10; i++ {
+// 			turn <- struct{}{}
+// 			if i%2 == 0 {
+// 				fmt.Println("##", i)
+// 			}
+// 		}
+// 	}()
+// 	wg.Wait()
+// }
+
+// func channelFunc() {
+// 	// 有缓存通道
+// 	var wg sync.WaitGroup
+// 	turn := make(chan struct{}, 1)
+// 	log := func(start int) {
+// 		defer wg.Done()
+// 		for i := start; i <= 10; i += 2 {
+// 			<-turn
+// 			fmt.Println(start, "##", i)
+// 			turn <- struct{}{}
+// 		}
+// 	}
+// 	wg.Add(2)
+// 	go log(1)
+// 	go log(2)
+// 	turn <- struct{}{}
+// 	wg.Wait()
+// }
+
+*/
