@@ -7,7 +7,7 @@ func Init() {
 	// example.ObserveFunc()
 	// example.EgFunc()
 	// 进阶和技巧
-	High()
+	// High()
 	//并发
 	// GoroutineFunc()
 	// 命令行参数
@@ -228,11 +228,13 @@ func Init() {
 	   	// extends()
 
 	   	//结构体与JSON序列化
-	   	// structjson() */
+	   	// structjson()
+			// structToMap()
+	*/
 
 	// 接口
 	// interfacefunc()
-
+	// structToMap()
 }
 
 /* //结构体方法
@@ -325,48 +327,51 @@ func structjson() {
 	json.Unmarshal([]byte(str), c1)
 	fmt.Println((*c1).Title)
 }
-	func structjson() {
-	type UserInfo struct {
-		Name string `json:"name"`
-		Age  int    `json:"age"`
-	}
-	user := UserInfo{
-		Name: "zx",
-		Age:  12,
-	}
-	// u1, _ := json.Marshal(&user)
-	// var m = make(map[string]interface{})
-	// _ = json.Unmarshal(u1, &m)
-	// fmt.Println(m) // json 序列号和反序列号后int变为float64
-	// for k, v := range m {
-	// 	fmt.Printf("key:%v value:%v value type:%T\n", k, v, v)
-	// }
 
-	ToMap := func(in interface{}, tagName string) (map[string]interface{}, error) {
-		out := make(map[string]interface{})
-		v := reflect.ValueOf(in)
-		if v.Kind() == reflect.Ptr {
-			v = v.Elem()
-		}
-		if v.Kind() != reflect.Struct { // 非结构体返回错误提示
-			return nil, fmt.Errorf("ToMap only accepts struct or struct pointer; got %T", v)
-		}
-		t := v.Type()
-		for i := 0; i < v.NumField(); i++ {
-			fi := t.Field(i)
-			if tagValue := fi.Tag.Get(tagName); tagValue != "" {
-				out[tagValue] = v.Field(i).Interface()
-			}
-		}
-		return out, nil
-	}
+// func structToMap() {
+// 	type UserInfo struct {
+// 		Name string `json:"name" structs:"name"`
+// 		Age  int    `json:"age" structs:"age"`
+// 	}
+// 	user := UserInfo{
+// 		Name: "zx",
+// 		Age:  12,
+// 	}
+// 	// 方式1 json序列号和反序列化
+// 	// u1, _ := json.Marshal(&user)
+// 	// var m = make(map[string]interface{})
+// 	// json.Unmarshal(u1, &m)
+// 	// fmt.Println(m)
 
-	m, _ := ToMap(&user, "json")
-	fmt.Println(m)
-	for k, v := range m {
-		fmt.Printf("key:%v value:%v value type:%T\n", k, v, v)
-	}
-}
+// 	// 方式2 反射
+// 	// ToMap := func(in interface{}) (map[string]interface{}, error) {
+// 	// 	out := make(map[string]interface{})
+// 	// 	v := reflect.ValueOf(in)
+// 	// 	if v.Kind() == reflect.Ptr {
+// 	// 		v = v.Elem()
+// 	// 	}
+// 	// 	if v.Kind() != reflect.Struct {
+// 	// 		return nil, fmt.Errorf("ToMap only accepts struct or struct pointer; got %T", v)
+// 	// 	}
+// 	// 	// t := v.Type()
+// 	// 	t := reflect.TypeOf(in)
+// 	// 	// 获取结构体中有多少个字段
+// 	// 	num := v.NumField()
+// 	// 	for i := 0; i < num; i++ {
+// 	// 		fi := t.Field(i)
+// 	// 		if tagValue := fi.Tag.Get("json"); tagValue != "" {
+// 	// 			out[tagValue] = v.Field(i).Interface()
+// 	// 		}
+// 	// 	}
+// 	// 	return out, nil
+// 	// }
+// 	// m, _ := ToMap(user)
+// 	// fmt.Println(m)
+
+// 	// 方式3 structs包 "github.com/fatih/structs"
+// 	// m := structs.Map(user)
+// 	// fmt.Println(m)
+// }
 
 */
 
@@ -446,7 +451,7 @@ func structjson() {
 	flag.BoolVar(&married, "married", false, "婚否")
 	flag.DurationVar(&delay, "d", 0, "延迟的时间间隔")
 
-	//解析命令行参数
+	//解析命令行参Marshal()
 	flag.Parse()
 	fmt.Println(name, age, married, delay)
 	// //返回命令行参数后的其他参数
